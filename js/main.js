@@ -5,6 +5,22 @@ A = new Point(-2, 2, 1, E);
 let C;
 let P;
 
+let     plotEC = document.getElementById('plotEC').getContext('2d');;
+
+let scatterChart = new Chart(plotEC, {
+    type: 'scatter',
+    data: {datasets: [{
+        pointBackgroundColor: 'blue',
+        }]
+    },
+    options:{
+        legend: {
+            display: false
+        },
+    },
+});
+
+
 function multiplication() {
     let p = parseInt(document.getElementById('prime').value);
     let a = parseInt(document.getElementById('aParam').value);
@@ -43,34 +59,35 @@ function plotPoints() {
     C = new Curve(p, a, b);
     let Ps = C.getAllPoints();
     
-    let plotEC = document.getElementById('plotEC').getContext('2d');
-    let scatterChart = new Chart(plotEC, {
-        type: 'scatter',
-        data: {
-            datasets: [{
-                label: 'Rational points',
-                pointBackgroundColor: 'blue',
-            data: Ps,
-            }]
-        },
-        options:{
-            legend: {
-                display: false
-            },
-            xAxes: [{
-                ticks: {
-                    min: 0,
-                    max: p,
-                    stepSize: 20
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    min: 0,
-                    max: p,
-                    stepSize: 20
-                }
-            }]
-        },
-    }); 
+    removeData(scatterChart);
+    addData(scatterChart, 'Rational points', Ps);
+    // let scatterChart = new Chart(plotEC, {
+    //     type: 'scatter',
+    //     data: {
+    //         datasets: [{
+    //             label: 'Rational points',
+    //             pointBackgroundColor: 'blue',
+    //         data: Ps,
+    //         }]
+    //     },
+    //     options:{
+    //         legend: {
+    //             display: false
+    //         },
+    //         xAxes: [{
+    //             ticks: {
+    //                 min: 0,
+    //                 max: p,
+    //                 stepSize: 20
+    //             }
+    //         }],
+    //         yAxes: [{
+    //             ticks: {
+    //                 min: 0,
+    //                 max: p,
+    //                 stepSize: 20
+    //             }
+    //         }]
+    //     },
+    // }); 
 }
