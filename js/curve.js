@@ -17,7 +17,7 @@ function Curve(p, a, b) {
     this.getAllPoints = function() {
         let Ps = [];
         let squares = quadraticResidues(this.p);
-        let residues = keys(squares);
+        let residues = Object.keys(squares);
         let j;
         for (let i = 0; i < p; i++) {
             j = ((i ** 3 + this.equation[0] * i + this.equation[1]) % this.p + p) % this.p;
