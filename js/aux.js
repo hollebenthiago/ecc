@@ -26,7 +26,7 @@ function modInverse(a, m) {
     }
     return (y % m + m) % m
 }
-
+//find quadratic residues
 function quadraticResidues(p) {
 	let squares = {};
 	for (let i = 0; i < p; i++) {

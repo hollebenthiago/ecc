@@ -24,9 +24,9 @@ function Curve(p, a, b) {
             if (residues.includes(j)) {
                 for (let t = 0; t < squares[j].length; t++) {
                     Ps.push({x:i, y:squares[j][t]})
-                }
-            }
-        }
+                };
+            };
+        };
         return Ps
     }
 }
