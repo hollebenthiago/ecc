@@ -65,18 +65,16 @@ function plotPoints() {
             legend: {
                 display: false
             },
-            xAxes: [{
-                ticks: {
-                    min: 0,
-                    max: C.p
+            scales: {
+                y: {
+                    min = 0,
+                    max = p
+                },
+                x: {
+                    min = 0,
+                    max = p
                 }
-            }],
-            yAxes: [{
-                ticks: {
-                    min: 0,
-                    max: C.p
-                }
-            }]
+            }
         }
     })
     addData(scatterChart, 'Rational points', Ps);
