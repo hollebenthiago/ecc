@@ -26,3 +26,16 @@ function modInverse(a, m) {
     }
     return (y % m + m) % m
 }
+
+function quadraticResidues(p) {
+	let squares = {};
+	for (let i = 0; i < p; i++) {
+		if (squares[(i*i % p).toString()]) {
+			squares[(i*i % p).toString()].push(i)
+		}
+		else {
+			squares[(i*i % p).toString()] = [i];
+		}
+	}
+	return squares
+}

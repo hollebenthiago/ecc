@@ -1,0 +1,47 @@
+---
+layout: default
+<!-- title: hollebenthiago.github.io
+cv: passive
+notes: passive
+contact: passive -->
+plot: active
+description:  Addition EC calculator.
+---
+<!-- <div class="jumbotron"> -->
+    <div class="container">
+        <div class='title'>
+            <h1>Elliptic Curve Calculator</h1>
+        </div>
+        <div class='intro'>
+            <p>Type the cardinality of the field (prime fields with char different from 2 and 3), a,b parameters of the equation,</p>
+        </div>
+        <div class='form'>
+            <!-- <h1>Prime</h1> -->
+            <input type="text" id='prime' name='prime' autocomplete='off' required>
+            <label for="prime" class='label-name'>
+                <span class='content-name'>Prime</span>
+            </label>
+        </div>
+        <div class='form'>
+            <!-- <h1>a</h1> -->
+            <input type="text" id='aParam' name='aParam' autocomplete='off' required>
+            <label for="aParam" class='label-name'>
+                <span class='content-name'>a</span>
+            </label>
+        </div>
+        <div class='form'>
+            <!-- <h1>b</h1> -->
+            <input type="text" id='bParam' name='name' autocomplete='off' required>
+            <label for="bParam" class='label-name'>
+                <span class='content-name'>b</span>
+            </label>
+        </div>
+
+        <div class='button'>
+            <button class='resultButton' onclick='plot();'>Plot</button>
+        </div>
+    
+        <div class='result'>
+            <canvas id='plotEC'></canvas>
+        </div>
+    </div>

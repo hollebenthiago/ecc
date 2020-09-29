@@ -35,3 +35,28 @@ function addition() {
     R = addPoints(P, Q);
     document.getElementById('resultAddition').innerHTML = 'The coordinates of '.concat( 'P + Q' ,' are: [', (R.x).toString(), ': ', (R.y).toString(), ': ', (R.z).toString(), ']')
 }
+
+function plot() {
+    let p = parseInt(document.getElementById('prime').value);
+    let a = parseInt(document.getElementById('aParam').value);
+    let b = parseInt(document.getElementById('bParam').value);
+    C = new Curve(p, a, b);
+    let Ps = C.getAllPoints();
+    
+    let plotEC = document.getElementById('plotEC').getContext('2d');
+    let scatterChart = new CharacterData(plotEC, {
+        type: scatter,
+        data: {
+            datasets: [{
+                label: 'Rational points',
+                pointBackgroundColor: 'blue',
+            data: Ps,
+            }]
+        },
+        options:{
+            legend: {
+                display: false
+            },
+        }
+    }) 
+}
