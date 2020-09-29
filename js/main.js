@@ -5,20 +5,9 @@ A = new Point(-2, 2, 1, E);
 let C;
 let P;
 
-let     plotEC = document.getElementById('plotEC').getContext('2d');;
+let plotEC;
 
-let scatterChart = new Chart(plotEC, {
-    type: 'scatter',
-    data: {datasets: [{
-        pointBackgroundColor: 'blue',
-        }]
-    },
-    options:{
-        legend: {
-            display: false
-        },
-    },
-});
+let scatterChart;
 
 
 function multiplication() {
@@ -59,7 +48,20 @@ function plotPoints() {
     C = new Curve(p, a, b);
     let Ps = C.getAllPoints();
     
-    removeData(scatterChart);
+    plotEC = document.getElementById('plotEC').getContext('2d');
+    if (scatterChart) {
+        removeData(scatterChart);
+    }
+    scatterChart = new Chart(plotEC, {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'Rational points',
+                pointBackgroundColor: 'blue',
+                data: Ps
+            }]
+        }
+    })
     addData(scatterChart, 'Rational points', Ps);
     // let scatterChart = new Chart(plotEC, {
     //     type: 'scatter',
