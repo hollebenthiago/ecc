@@ -66,14 +66,18 @@ function plotPoints() {
                 display: false
             },
             scales: {
-                y: {
-                    min = 0,
-                    max = p
-                },
-                x: {
-                    min = 0,
-                    max = p
-                }
+                xAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: p,
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: p,
+                    }
+                }]
             }
         }
     })
