@@ -15,6 +15,7 @@ description:  Addition EC calculator.
         <div class='intro'>
             <p>Type the cardinality of the field (prime fields with char different from 2 and 3), a,b parameters of the equation,</p>
             <p> X, Y, Z the projective coordinates of a point P</p>
+            <p> W, S, T the projective coordinates of a point Q</p>
         </div>
         <div class='form'>
             <!-- <h1>Prime</h1> -->
@@ -58,16 +59,29 @@ description:  Addition EC calculator.
                 <span class='content-name'>Z</span>
             </label>
         </div>
-        
         <div class='form'>
-            <!-- <h1>n</h1> -->
-            <input type="text" id='n' name='n' autocomplete='off' required>
-            <label for="n" class='label-name'>
-                <span class='content-name'>n</span>
+            <!-- <h1>X coord P</h1> -->
+            <input type="text" id='xcoord2' name='xcoord2' autocomplete='off' required>
+            <label for="xcoord2" class='label-name'>
+                <span class='content-name'>W</span>
+            </label>
+        </div>
+        <div class='form'>
+            <!-- <h1>Y coord P</h1> -->
+            <input type="text" id='ycoord2' name='ycoord2' autocomplete='off' required>
+            <label for="ycoord2" class='label-name'>
+                <span class='content-name'>S</span>
+            </label>
+        </div>
+        <div class='form'>
+            <!-- <h1>Z coord P</h1> -->
+            <input type="text" id='zcoord2' name='zcoord2' autocomplete='off' required>
+            <label for="zcoord2" class='label-name'>
+                <span class='content-name'>T</span>
             </label>
         </div>
         <div class='button'>
-            <button onclick = 'multiplication();'>Calculate nP</button>
+            <button>Calculate P + Q</button>
         </div>
     
         <div class='result'>
