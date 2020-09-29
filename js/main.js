@@ -57,6 +57,20 @@ function plotPoints() {
             legend: {
                 display: false
             },
+            xAxes: [{
+                ticks: {
+                    min: 0,
+                    max: p,
+                    stepSize: 20
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: p,
+                    stepSize: 20
+                }
+            }]
         },
     }); 
 }
