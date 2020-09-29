@@ -50,7 +50,7 @@ function plotPoints() {
     
     plotEC = document.getElementById('plotEC').getContext('2d');
     if (scatterChart) {
-        removeData(scatterChart);
+        scatterChart.destroy();
     }
     scatterChart = new Chart(plotEC, {
         type: 'scatter',
@@ -59,6 +59,23 @@ function plotPoints() {
                 label: 'Rational points',
                 pointBackgroundColor: 'blue',
                 data: Ps
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            xAxes: [{
+                ticks: {
+                    min: 0,
+                    max: C.p
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: C.p
+                }
             }]
         }
     })
