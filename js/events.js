@@ -85,3 +85,26 @@ function primalityTest() {
     }
 
 }
+
+function plotDistribution() {
+    let p = parseInt(document.getElementById('prime').value);
+    let data = distribution(p);
+    plot_distEC = document.getElementById('plot_dist').getContext('2d');
+    if (distChart) {
+        distChart.destroy();
+    }
+    distChart = new Chart(plot_distEC, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                backgroundColor: 'blue',
+                data: data
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
+        }
+    })
+}

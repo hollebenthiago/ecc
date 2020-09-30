@@ -1,0 +1,34 @@
+---
+layout: default
+<!-- title: hollebenthiago.github.io
+cv: passive
+notes: passive
+contact: passive -->
+distribution: active
+description:  Addition EC calculator.
+---
+<!-- <div class="jumbotron"> -->
+    <div class="container">
+        <div class='title'>
+            <h1>Distribution of Elliptic Curves by their group order</h1>
+        </div>
+        <div class='intro'>
+            <p>Type the cardinality of the field (prime fields with char different from 2 and 3)</p>
+        </div>
+        <div class='form'>
+            <!-- <h1>Prime</h1> -->
+            <input type="text" id='prime' name='prime' autocomplete='off' required>
+            <label for="prime" class='label-name'>
+                <span class='content-name'>Prime</span>
+            </label>
+        </div>
+        
+
+        <div class='button'>
+            <button class='resultButton' onclick='plotDistribution();'>Plot</button>
+        </div>
+    
+        <div class='result'>
+            <canvas id='plot_dist'></canvas>
+        </div>
+    </div>
