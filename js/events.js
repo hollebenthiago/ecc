@@ -113,10 +113,13 @@ function plotDistribution() {
                 xAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Number of rational points'
+                        labelString: 'Number of Rational Points'
                     }
                 }],
                 yAxes: [{
+                    ticks: {
+                        min: 0
+                    }
                     scaleLabel: {
                         display: true,
                         labelString: 'Number of Elliptic Curves'
