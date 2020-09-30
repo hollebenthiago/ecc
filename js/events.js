@@ -81,7 +81,7 @@ function primalityTest() {
     else {
         let a = arr[2].equation[0];
         let b = arr[2].equation[1];
-        document.getElementById('resultPrimality').innerHTML = 'The number '.concat((p).toString(), ' is not a prime! The Elliptic Curve with parameters a = ', (a).toString(), ' and b = ', (b).toString(), ' does not have a group structure. One factor was found: ', (arr[1]).toString());
+        document.getElementById('resultPrimality').innerHTML = 'The number '.concat((p).toString(), ' is not prime! The Elliptic Curve with parameters a = ', (a).toString(), ' and b = ', (b).toString(), ' does not have a group structure. One factor was found: ', (arr[1]).toString());
     }
 
 }
