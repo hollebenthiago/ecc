@@ -1,3 +1,4 @@
+//inverse of a mod m
 function modInverse(a, m) {
     // validate inputs
     [a, m] = [Number(a), Number(m)]
@@ -26,7 +27,7 @@ function modInverse(a, m) {
     }
     return (y % m + m) % m
 }
-//find quadratic residues
+//find quadratic residues mod p
 function quadraticResidues(p) {
 	let squares = {};
 	for (let i = 0; i < p; i++) {
@@ -39,19 +40,32 @@ function quadraticResidues(p) {
 	}
 	return squares
 }
-
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
+// gcd of two numbers
+function gcd(a, b) {
+  return !b ? a : gcd(b, a % b);
 }
+// lcm of (min, min + 1,..., max)
+function lcm(min, max) {
+  function range(min, max) {
+      let arr = [];
+      for (let i = min; i <= max; i++) {
+          arr.push(i);
+      }
+      return arr;
+  }
 
-function removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-    chart.update();
+  function gcd(a, b) {
+      return !b ? a : gcd(b, a % b);
+  }
+
+  function lcmSimple(a, b) {
+      return (a * b) / gcd(a, b);   
+  }
+
+  var multiple = min;
+  range(min, max).forEach(function(n) {
+      multiple = lcmSimple(multiple, n);
+  });
+
+  return multiple;
 }

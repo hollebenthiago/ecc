@@ -1,4 +1,4 @@
-function Point(x, y, z,curve) {
+function Point(x, y, z,curve, allowAlert = true) {
     this.x = x;
     this.y = y;    
     this.z = z;
@@ -11,7 +11,7 @@ function Point(x, y, z,curve) {
     if (curve.includePoint(this.x, this.y, this.z) == true) {
         this.curve = curve;
     }
-    else{
+    else if (allowAlert){
         alert("point has to be on curve")
     }
     this.double = function() {

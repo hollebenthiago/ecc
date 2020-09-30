@@ -1,7 +1,10 @@
-function addPoints(p1, p2) {
+function addPoints(p1, p2, allowAlert = true) {
     
     let lam = 0;
     let curve = p1.curve;
+    p1.allowAlert = allowAlert;
+    p2.allowAlert = allowAlert;
+    console.log(p1.curve, p1);
     if (p1.identity == true) {
         return p2
     }
@@ -24,7 +27,7 @@ function addPoints(p1, p2) {
 
         let xS = ((lam ** 2 - p1.x - p2.x) % curve.p + curve.p ) % curve.p;
         let yS = ((lam * (p1.x - xS) - p1.y) % curve.p + curve.p ) % curve.p;
-        return new Point(xS, yS, 1, curve)
+        return new Point(xS, yS, 1, curve, allowAlert)
     }   
 }
 
@@ -61,7 +64,7 @@ function addPoints(p1, p2) {
 //     }
 // }
 
-function mult(n, p) {
+function mult(n, p, allowAlert = true) {
     
     let s = new Point(0, 1, 0, p.curve);
 
@@ -70,18 +73,18 @@ function mult(n, p) {
     }
 
     else if (n > 0) {
-        let q = new Point(p.x, p.y, p.z, p.curve);
+        let q = new Point(p.x, p.y, p.z, p.curve, allowAlert = allowAlert);
         for (let i = 0; i < n; i++) {
-            s = addPoints(s, q);
+            s = addPoints(s, q, allowAlert);
         }
         return s
     }
 
     else {
-        let q = new Point(p.x -p.y, p.z, p.curve);
+        let q = new Point(p.x -p.y, p.z, p.curve, allowAlert);
         n = -n;
         for (let i = 0; i < n; i++) {
-            s = addPoints(s, q);
+            s = addPoints(s, q, allowAlert);
         }
         return s
     }
