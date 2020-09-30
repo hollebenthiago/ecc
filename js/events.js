@@ -119,7 +119,7 @@ function plotDistribution() {
                 yAxes: [{
                     ticks: {
                         min: 0
-                    }
+                    },
                     scaleLabel: {
                         display: true,
                         labelString: 'Number of Elliptic Curves'
