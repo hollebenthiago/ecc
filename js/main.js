@@ -15,42 +15,35 @@ function randomCurve(p) {
     return [E, P]
 }
 
-function setLimits(curve) {
-    let p = curve.p;
+function setLimits(p) {
     let B = Math.floor((p + 1 + Math.ceil(2 * p)) ** 0.5);
     let k = lcm(1, B);
   return [B, k]  
 }
 
-function primalityTest(p, n) {
-    let isPrime = true;
+function primality(p, n) {
+    let k = setLimits(p)[1];
+    console.log(k);
     for (let i = 0; i < n; i++) {
         let arr = randomCurve(p);
         let E = arr[0];
         let P = arr[1];
-        arr = setLimits(E);
-        let k = setLimits(E)[1];
         let O = new Point(0,1,0, E); 
         // console.log(E);
         for (let j = 1; j < k; j++) {
             if (isNaN(addPoints(O, P, false).x) || isNaN(addPoints(O, P, false).y)) {
-                isPrime = false;
                 if (O.x - P.x == 0 ) {
-                    return [gcd(2 * O.y, p), E]
+                    return [false, gcd(2 * O.y, p), E]
                 }
                 else {
-                    return [gcd(((O.x - P.x) % p + p) % p, p), E]
+                    return [false, gcd(((O.x - P.x) % p + p) % p, p), E]
                 }
             }
             else {
                 O = addPoints(P, O, false);
             }
         }
-       if (!isPrime) {
-           alert('not a prime');
-           break
-       }
-       console.log(isPrime);
+    //    console.log(isPrime);
     }
     return [true, n]
 }

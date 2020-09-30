@@ -69,5 +69,19 @@ function plotPoints() {
             }
         }
     })
-    addData(scatterChart, 'Rational points', Ps);
+}
+
+function primalityTest() {
+    let p = parseInt(document.getElementById('prime').value);
+    let n = parseInt(document.getElementById('n').value);
+    let arr = primality(p, n);
+    if (arr[0]) {
+        document.getElementById('resultPrimality').innerHTML = (arr[1]).toString().concat(' curves were tested, but no factor was found'); 
+    }
+    else {
+        let a = arr[2].equation[0];
+        let b = arr[2].equation[1];
+        document.getElementById('resultPrimality').innerHTML = 'The number '.concat((p).toString(), ' is not a prime! The Elliptic Curve with parameters a = ', (a).toString(), ' and b = ', (b).toString(), ' does not have a group structure. One factor was found: ', (arr[1]).toString());
+    }
+
 }
