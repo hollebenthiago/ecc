@@ -51,8 +51,7 @@ function primality(p, n) {
     return [true, n]
 }
 
-function distribution(curve) {
-    let p = curve.p;
+function distribution(p) {
     let xs = [];
     let ys = [];
     for(let i = p + 1 - Math.floor(2 * p ** 0.5); i <= p + 1 + Math.floor(2 * p ** 0.5); i++) {
@@ -66,11 +65,5 @@ function distribution(curve) {
             ys[xs.indexOf(n)]++;
         }
     }
-    let data = [];
-    for(let t = 0; t < xs.length; t++) {
-        let x = xs[t];
-        let y = ys[t];
-        data.push({x:y})
-    }
-    return data
+    return [xs, ys]
 }

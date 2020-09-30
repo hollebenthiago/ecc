@@ -88,7 +88,7 @@ function primalityTest() {
 
 function plotDistribution() {
     let p = parseInt(document.getElementById('prime').value);
-    let data = distribution(p);
+    let arr = distribution(p);
     plot_distEC = document.getElementById('plot_dist').getContext('2d');
     if (distChart) {
         distChart.destroy();
@@ -96,15 +96,34 @@ function plotDistribution() {
     distChart = new Chart(plot_distEC, {
         type: 'bar',
         data: {
-            datasets: [{
-                backgroundColor: 'blue',
-                data: data
-            }]
-        },
+            labels: arr[0],
+            datasets: [
+                {
+                    label: "Number of Elliptic Curves",
+                    backgroundColor: '#3498db',
+                    data: arr[1]
+                }
+            ]
+    },
         options: {
             legend: {
                 display: false
+            },
+            scales: {
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Number of rational points'
+                    }
+                }],
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Number of Elliptic Curves'
+                    }
+                }]
             }
+            
         }
     })
 }
