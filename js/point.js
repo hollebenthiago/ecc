@@ -8,12 +8,14 @@ function Point(x, y, z,curve, allowAlert = true) {
     else {
         this.identity = false;
     }
-    if (curve.includePoint(this.x, this.y, this.z) == true) {
-        this.curve = curve;
-    }
-    else if (allowAlert){
-        alert("point has to be on curve")
-    }
+    // if (curve.includePoint(this.x, this.y, this.z) == true) {
+    //     this.curve = curve;
+    // }
+    this.curve = curve;
+    
+    // if (allowAlert && curve.includePoint(this.x, this.y, this.z) == true){
+    //     alert("point has to be on curve")
+    // }
     this.double = function() {
         if (this.y != 0) {
             let x3 = (((3 * this.x ** 2 + this.curve.equation[0]) * modInverse(2 * y, this.curve.p)) ** 2 - 2*x)  % this.curve.p;

@@ -1,10 +1,17 @@
-function addPoints(p1, p2, allowAlert = true) {
+function addPoints(p1, p2, allowAlert = true, primeTesting = false) {
     
     let lam = 0;
     let curve = p1.curve;
+    if (curve == undefined && primeTesting) {
+        curve = p2.curve;
+    }
     p1.allowAlert = allowAlert;
     p2.allowAlert = allowAlert;
-    console.log(p1.curve, p1);
+    // console.log(p1.curve, p1);
+    if (curve == undefined && primeTesting) {
+        console.log(p1, p2)
+        return new Point(p2.x - p1.x, 1, 1, curve, allowAlert)
+    }
     if (p1.identity == true) {
         return p2
     }
@@ -14,7 +21,7 @@ function addPoints(p1, p2, allowAlert = true) {
     }
 
     else if ((p1.x - p2.x) % curve.p == 0 && (p1.y + p2.y) % curve.p == 0) {
-        return new Point(0, 1, 0, curve)
+        return new Point(0, 1, 0, curve, allowAlert)
     }
     
     else {

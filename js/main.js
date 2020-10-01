@@ -31,10 +31,10 @@ function primality(p, n) {
         let arr = randomCurve(p);
         let E = arr[0];
         let P = arr[1];
-        let O = new Point(0,1,0, E); 
+        let O = new Point(0,1,0, E, false); 
         // console.log(E);
         for (let j = 1; j < k; j++) {
-            if (isNaN(addPoints(P, O, false).x) || isNaN(addPoints(P, O, false).y) || isNaN(O.x) || isNaN(O.y)) {
+            if (isNaN(addPoints(P, O, false, true).x) || isNaN(addPoints(P, O, false, true).y) || isNaN(O.x) || isNaN(O.y) || O.curve == undefined) {
                 if (O.x - P.x == 0 ) {
                     return [false, gcd(2 * O.y, p), E]
                 }
@@ -43,7 +43,7 @@ function primality(p, n) {
                 }
             }
             else {
-                O = addPoints(P, O, false);
+                O = addPoints(P, O, false, true);
             }
         }
     //    console.log(isPrime);
