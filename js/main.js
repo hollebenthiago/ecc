@@ -21,7 +21,7 @@ function randomCurve(p) {
 function setLimits(p) {
     let B = Math.floor((p + 1 + Math.ceil(2 * p)) ** 0.5);
     let k = lcm(1, B);
-  return [B, k]  
+  return [B, Math.min(k, 100)]  
 }
 
 function primality(p, n) {
@@ -34,7 +34,7 @@ function primality(p, n) {
         let O = new Point(0,1,0, E); 
         // console.log(E);
         for (let j = 1; j < k; j++) {
-            if (isNaN(addPoints(O, P, false).x) || isNaN(addPoints(O, P, false).y)) {
+            if (isNaN(addPoints(P, O, false).x) || isNaN(addPoints(P, O, false).y) || isNaN(O.x) || isNaN(O.y)) {
                 if (O.x - P.x == 0 ) {
                     return [false, gcd(2 * O.y, p), E]
                 }
