@@ -8,8 +8,13 @@ function multiplication() {
     let n = parseInt(document.getElementById('n').value);
     C = new Curve(p, a, b);
     P = new Point(x1,y1,z1,C);
-    Q = mult(n, P);
-    document.getElementById('resultMultiplication').innerHTML = 'The coordinates of '.concat((n).toString(), 'P' ,' are: [', (Q.x).toString(), ': ', (Q.y).toString(), ': ', (Q.z).toString(), ']')
+    if (C.includePoint(P.x, P.y, P.z)) {
+        Q = mult(n, P);
+        document.getElementById('resultMultiplication').innerHTML = 'The coordinates of '.concat((n).toString(), 'P' ,' are: [', (Q.x).toString(), ': ', (Q.y).toString(), ': ', (Q.z).toString(), ']')
+    }
+    else {
+        document.getElementById('resultMultiplication').innerHTML = 'The point P has to be on the curve'
+    }
 }
 
 function addition() {
@@ -26,7 +31,12 @@ function addition() {
     P = new Point(x1,y1,z1,C);
     Q = new Point(x2,y2,z2,C);
     R = addPoints(P, Q);
-    document.getElementById('resultAddition').innerHTML = 'The coordinates of '.concat( 'P + Q' ,' are: [', (R.x).toString(), ': ', (R.y).toString(), ': ', (R.z).toString(), ']')
+    if (C.includePoint(P.x, P.y, P.z) && C.includePoint(Q.x, Q.y, Q.z)) {
+        document.getElementById('resultAddition').innerHTML = 'The coordinates of '.concat( 'P + Q' ,' are: [', (R.x).toString(), ': ', (R.y).toString(), ': ', (R.z).toString(), ']')
+    }
+    else {
+        document.getElementById('resultAddition').innerHTML = 'Both points have to be on the curve'
+    }
 }
 
 function plotPoints() {
