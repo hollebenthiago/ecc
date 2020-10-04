@@ -143,11 +143,11 @@ function plotDistribution() {
 
 
 function findTorsion() {
-    let a = parseFloat(document.getElementById('a').value);
-    let b = parseFloat(document.getElementById('b').value);
+    let a = parseFloat(document.getElementById('aParam').value);
+    let b = parseFloat(document.getElementById('bParam').value);
     let E = new Curve(0, a, b);
     let tPoints = torsionPoints(E);
-    
+    console.log(tPoints, tPoints.length);
     if (tPoints.length == 1) {
         document.getElementById('resultTorsion').innerHTML = 'The only torsion point is the point at infinity [0: 1: 0]'
     }
@@ -157,10 +157,14 @@ function findTorsion() {
             if (i == tPoints.length - 1) {
                 textTorsion = textTorsion.concat(' and [', tPoints[i].x, ': ', tPoints[i].y, ': ', tPoints[i].z, ']')
             }
-            else {
+            else if (i == 0) {
                 textTorsion = textTorsion.concat(' [', tPoints[i].x, ': ', tPoints[i].y, ': ', tPoints[i].z, ']');
             }
+            else {
+                textTorsion = textTorsion.concat(', [', tPoints[i].x, ': ', tPoints[i].y, ': ', tPoints[i].z, ']');
+            }
         }
+        document.getElementById('resultTorsion').innerHTML = textTorsion;
     }
 
 }
