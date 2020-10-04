@@ -1,0 +1,41 @@
+---
+layout: default
+<!-- title: hollebenthiago.github.io
+cv: passive
+notes: passive
+contact: passive -->
+torsion: active
+description: Torsion points of an Elliptic Curve.
+---
+<!-- <div class="jumbotron"> -->
+    <div class="container">
+        <div class='title'>
+            <h1>Torsion points of an Elliptic Curve over the rational numbers</h1>
+        </div>
+        <div class='intro'>
+            <p>a and b are the parameters of the curve</p>
+        </div>
+        
+        <div class='form'>
+            <!-- <h1>a</h1> -->
+            <input type="text" id='aParam' name='aParam' autocomplete='off' required>
+            <label for="aParam" class='label-name'>
+                <span class='content-name'>a</span>
+            </label>
+        </div>
+        <div class='form'>
+            <!-- <h1>b</h1> -->
+            <input type="text" id='bParam' name='name' autocomplete='off' required>
+            <label for="bParam" class='label-name'>
+                <span class='content-name'>b</span>
+            </label>
+        </div>
+
+        <div class='button'>
+            <button class='resultButton' onclick='findTorsion();'>Find points</button>
+        </div>
+    
+        <div class='result'>
+            <p id='resultTorsion'></p>
+        </div>
+    </div>

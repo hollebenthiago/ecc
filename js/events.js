@@ -140,3 +140,27 @@ function plotDistribution() {
         }
     })
 }
+
+
+function findTorsion() {
+    let a = parseFloat(document.getElementById('a').value);
+    let b = parseFloat(document.getElementById('b').value);
+    let E = new Curve(0, a, b);
+    let tPoints = torsionPoints(E);
+    
+    if (tPoints.length == 1) {
+        document.getElementById('resultTorsion').innerHTML = 'The only torsion point is the point at infinity [0: 1: 0]'
+    }
+    else {
+        let textTorsion = 'The torsion points of the curve are: ';
+        for (let i = 0; i < tPoints.length; i++) {
+            if (i == tPoints.length - 1) {
+                textTorsion = textTorsion.concat(' and [', tPoints[i].x, ': ', tPoints[i].y, ': ', tPoints[i].z, ']')
+            }
+            else {
+                textTorsion = textTorsion.concat(' [', tPoints[i].x, ': ', tPoints[i].y, ': ', tPoints[i].z, ']');
+            }
+        }
+    }
+
+}

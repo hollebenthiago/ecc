@@ -19,24 +19,46 @@ function addPoints(p1, p2, allowAlert = true, primeTesting = false) {
     else if (p2.identity == true) {
         return p1
     }
-
-    else if ((p1.x - p2.x) % curve.p == 0 && (p1.y + p2.y) % curve.p == 0) {
-        return new Point(0, 1, 0, curve, allowAlert)
-    }
-    
-    else {
-        if (p1.x == p2.x) {
-            lam = (3 * (p1.x)**2 + curve.equation[0]) * modInverse(2* p1.y, curve.p);
+    if (curve.p != 0) {
+        if ((p1.x - p2.x) % curve.p == 0 && (p1.y + p2.y) % curve.p == 0) {
+            return new Point(0, 1, 0, curve, allowAlert)
         }
+        
         else {
-            lam = (p2.y - p1.y) * modInverse(p2.x - p1.x, curve.p);
+            if (p1.x == p2.x) {
+                lam = (3 * (p1.x)**2 + curve.equation[0]) * modInverse(2* p1.y, curve.p);
+            }
+            else {
+                lam = (p2.y - p1.y) * modInverse(p2.x - p1.x, curve.p);
+            }
+    
+            let xS = ((lam ** 2 - p1.x - p2.x) % curve.p + curve.p ) % curve.p;
+            let yS = ((lam * (p1.x - xS) - p1.y) % curve.p + curve.p ) % curve.p;
+            return new Point(xS, yS, 1, curve, allowAlert)
         }
+    }
 
-        let xS = ((lam ** 2 - p1.x - p2.x) % curve.p + curve.p ) % curve.p;
-        let yS = ((lam * (p1.x - xS) - p1.y) % curve.p + curve.p ) % curve.p;
-        return new Point(xS, yS, 1, curve, allowAlert)
+    else if (curve.p == 0) {
+        if (p1.x - p2.x == 0 && p1.y + p2.y == 0) {
+            return new Point(0, 1, 0, curve, allowAlert)
+        }
+        
+        else {
+            if (p1.x == p2.x) {
+                lam = (3 * (p1.x)**2 + curve.equation[0])/(2* p1.y);
+            }
+            else {
+                lam = (p2.y - p1.y)/(p2.x - p1.x);
+            }
+    
+            let xS = ((lam ** 2 - p1.x - p2.x));
+            let yS = ((lam * (p1.x - xS) - p1.y));
+            return new Point(xS, yS, 1, curve, allowAlert)
+        }
     }   
 }
+
+
 
 // function mult(n, p) {
 //     if (n == 0) {
