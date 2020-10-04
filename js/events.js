@@ -91,7 +91,7 @@ function primalityTest() {
     else {
         let a = arr[2].equation[0];
         let b = arr[2].equation[1];
-        document.getElementById('resultPrimality').innerHTML = 'The number '.concat((p).toString(), ' is not prime! The Elliptic Curve with parameters a = ', (a).toString(), ' and b = ', (b).toString(), ' does not have a group structure. One factor was found: ', (arr[1]).toString());
+        document.getElementById('resultPrimality').innerHTML = 'The number '.concat(p, ' is not prime! The Elliptic Curve y^2 + x^3 + ', a, 'x + ', b,' does not have a group structure. One factor was found: ', (arr[1]).toString());
     }
 
 }
@@ -149,10 +149,10 @@ function findTorsion() {
     let tPoints = torsionPoints(E);
     console.log(tPoints, tPoints.length);
     if (tPoints.length == 1) {
-        document.getElementById('resultTorsion').innerHTML = 'The only torsion point is the point at infinity [0: 1: 0]'
+        document.getElementById('resultTorsion').innerHTML = 'The only torsion point of the curve y^2 = x^3 + '.concat(a, 'x + ', b, ' is the point at infinity [0: 1: 0]');
     }
     else {
-        let textTorsion = 'The torsion points of the curve are: ';
+        let textTorsion = 'The torsion points of the curve y^2 = x^3 + '.concat(a, 'x + ', b, ' are :');
         for (let i = 0; i < tPoints.length; i++) {
             if (i == tPoints.length - 1) {
                 textTorsion = textTorsion.concat(' and [', tPoints[i].x, ': ', tPoints[i].y, ': ', tPoints[i].z, ']')
