@@ -1,16 +1,15 @@
-function addPoints(p1, p2, allowAlert = true, primeTesting = false) {
+function addPoints(p1, p2, primeTesting = false) {
     
     let lam = 0;
     let curve = p1.curve;
     if (curve == undefined && primeTesting) {
         curve = p2.curve;
     }
-    p1.allowAlert = allowAlert;
-    p2.allowAlert = allowAlert;
-    // console.log(p1.curve, p1);
+
+
     if (curve == undefined && primeTesting) {
         console.log(p1, p2)
-        return new Point(p2.x - p1.x, 1, 1, curve, allowAlert)
+        return new Point(p2.x - p1.x, 1, 1, curve)
     }
     if (p1.identity == true) {
         return p2
@@ -21,7 +20,7 @@ function addPoints(p1, p2, allowAlert = true, primeTesting = false) {
     }
     if (curve.p != 0) {
         if ((p1.x - p2.x) % curve.p == 0 && (p1.y + p2.y) % curve.p == 0) {
-            return new Point(0, 1, 0, curve, allowAlert)
+            return new Point(0, 1, 0, curve)
         }
         
         else {
@@ -34,13 +33,13 @@ function addPoints(p1, p2, allowAlert = true, primeTesting = false) {
     
             let xS = ((lam ** 2 - p1.x - p2.x) % curve.p + curve.p ) % curve.p;
             let yS = ((lam * (p1.x - xS) - p1.y) % curve.p + curve.p ) % curve.p;
-            return new Point(xS, yS, 1, curve, allowAlert)
+            return new Point(xS, yS, 1, curve)
         }
     }
 
     else if (curve.p == 0) {
         if (p1.x - p2.x == 0 && p1.y + p2.y == 0) {
-            return new Point(0, 1, 0, curve, allowAlert)
+            return new Point(0, 1, 0, curve)
         }
         
         else {
@@ -53,47 +52,12 @@ function addPoints(p1, p2, allowAlert = true, primeTesting = false) {
     
             let xS = ((lam ** 2 - p1.x - p2.x));
             let yS = ((lam * (p1.x - xS) - p1.y));
-            return new Point(xS, yS, 1, curve, allowAlert)
+            return new Point(xS, yS, 1, curve)
         }
     }   
 }
 
-
-
-// function mult(n, p) {
-//     if (n == 0) {
-//         return new Point(0,1,0,p.curve)
-//     }
-
-//     if (n > 0) {
-//         let binaryExpression = (n).toString(2);
-//         let s = new Point(0, 1, 0, p.curve);
-//         let q = new Point(p.x, p.y, p.z, p.curve);
-//         for (let i = 0; i < binaryExpression.length; i++) {
-//             if (binaryExpression[i] == "1") {
-//                 s = addPoints(s, q, q.curve);
-//             }
-//             q = addPoints(q, q, q.curve);
-//         }
-//         return s
-//     }
-
-//     else {
-//         n = -n;
-//         let binaryExpression = (n).toString(2);
-//         let s = new Point(0, 1, 0, p.curve);
-//         let q = new Point(p.x, -p.y, p.z, p.curve);
-//         for (let i = 0; i < binaryExpression.length; i++) {
-//             if (binaryExpression[i] == "1") {
-//                 s = addPoints(s, q, q.curve);
-//             }
-//             q = addPoints(q, q, q.curve);
-//         }
-//         return s
-//     }
-// }
-
-function mult(n, p, allowAlert = true) {
+function mult(n, p) {
     
     let s = new Point(0, 1, 0, p.curve);
 
@@ -102,18 +66,18 @@ function mult(n, p, allowAlert = true) {
     }
 
     else if (n > 0) {
-        let q = new Point(p.x, p.y, p.z, p.curve, allowAlert = allowAlert);
+        let q = new Point(p.x, p.y, p.z, p.curve);
         for (let i = 0; i < n; i++) {
-            s = addPoints(s, q, allowAlert);
+            s = addPoints(s, q);
         }
         return s
     }
 
     else {
-        let q = new Point(p.x -p.y, p.z, p.curve, allowAlert);
+        let q = new Point(p.x -p.y, p.z, p.curve);
         n = -n;
         for (let i = 0; i < n; i++) {
-            s = addPoints(s, q, allowAlert);
+            s = addPoints(s, q);
         }
         return s
     }

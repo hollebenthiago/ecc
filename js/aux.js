@@ -62,7 +62,7 @@ function lcm(min, max) {
       return (a * b) / gcd(a, b);   
   }
 
-  var multiple = min;
+  let multiple = min;
   range(min, max).forEach(function(n) {
       multiple = lcmSimple(multiple, n);
   });
@@ -78,10 +78,12 @@ function combinations(arr){
   }
 }
 
+//round a number to nearest integer
 function round(v) {
   return Math.sign(v) * Math.round(Math.abs(v))
 }
 
+// solve cubic equation in one variable
 function CubicSolve(a, b, c, d){
 
   b /= a;

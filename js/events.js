@@ -1,3 +1,4 @@
+// multiplication by scalar
 function multiplication() {
     let p = parseInt(document.getElementById('prime').value);
     let a = parseInt(document.getElementById('aParam').value);
@@ -16,7 +17,7 @@ function multiplication() {
         document.getElementById('resultMultiplication').innerHTML = 'The point P has to be on the curve'
     }
 }
-
+// addition
 function addition() {
     let p = parseInt(document.getElementById('prime').value);
     let a = parseInt(document.getElementById('aParam').value);
@@ -38,7 +39,7 @@ function addition() {
         document.getElementById('resultAddition').innerHTML = 'Both points have to be on the curve'
     }
 }
-
+// plot rational points
 function plotPoints() {
     let p = parseInt(document.getElementById('prime').value);
     let a = parseInt(document.getElementById('aParam').value);
@@ -80,7 +81,7 @@ function plotPoints() {
         }
     })
 }
-
+// primality test
 function primalityTest() {
     let p = parseInt(document.getElementById('prime').value);
     let n = parseInt(document.getElementById('n').value);
@@ -95,7 +96,7 @@ function primalityTest() {
     }
 
 }
-
+// plot distribution of elliptic curves by their group order
 function plotDistribution() {
     let p = parseInt(document.getElementById('prime').value);
     let arr = distribution(p);
@@ -141,7 +142,7 @@ function plotDistribution() {
     })
 }
 
-
+// find torsion points of elliptic curves over the rationals
 function findTorsion() {
     let a = parseFloat(document.getElementById('aParam').value);
     let b = parseFloat(document.getElementById('bParam').value);

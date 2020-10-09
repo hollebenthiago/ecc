@@ -1,9 +1,10 @@
+// elliptic curve constructor
 function Curve(p, a, b) {
     
     this.p = p;
     this.equation = [a,b];
     this.delta = 4 * a ** 3 + 27 * b ** 2;
-
+    // checks if a certain point is on the curve
     this.includePoint = function(x, y, z) {
     
         if ((z*y**2 - x**3 - z**2*this.equation[0]*x - z**3*this.equation[1]) % this.p == 0 || (z*y**2 - x**3 - z**2*this.equation[0]*x - z**3*this.equation[1] == 0)) {
@@ -14,7 +15,7 @@ function Curve(p, a, b) {
             return false
         }
     }
-
+    // brute force method to get all points in an elliptic curve
     this.getAllPoints = function() {
         let Ps = [];
         let squares = quadraticResidues(this.p);
