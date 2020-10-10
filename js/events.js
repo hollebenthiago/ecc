@@ -173,5 +173,5 @@ function findTorsion() {
 function encryptMessage() {
     let M = document.getElementById('message').value;
     let MP = koblitz_encode(E, M);
-    document.getElementById('resultEncrypt').innerHTML = 'The point corresponding to your message is: '.concat('[', MP.x, MP.y, MP.z, ']')
+    document.getElementById('resultEncrypt').innerHTML = 'The point corresponding to your message is: '.concat('[', MP.x, ', ',MP.y, ', ', MP.z, ']')
 }
