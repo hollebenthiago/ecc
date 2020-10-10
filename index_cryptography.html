@@ -9,26 +9,70 @@ description:  Elliptic Curve Cryptography.
 ---
 <!-- <div class="jumbotron"> -->
     <div class="container">
-        <div class='title'>
-            <h1>Elliptic Curve Cryptography</h1>
-        </div>
-        <div class='intro'>
-            <p>only messages with 2 characters so far</p>
-        </div>
-        <div class='form'>
-            <!-- <h1>Message</h1> -->
-            <input type="text" id='message' name='message' autocomplete='off' required>
-            <label for="message" class='label-name'>
-                <span class='content-name'>Message to encrypt</span>
-            </label>
-        </div>
         
+        <div class='col-sm-5'>
+            <div class='title'>
+                <h1>Encrypt a message to a point </h1>
+            </div>
+            <div class='intro'>
+                <p>only messages with 2 characters so far</p>
+            </div>
 
-        <div class='button'>
-            <button class='resultButton' onclick='encryptMessage();'>Encrypt</button>
-        </div>
+            <div class='form'>
+                <!-- <h1>Message</h1> -->
+                <input type="text" id='message' name='messageEncrypt' autocomplete='off' required>
+                <label for="messageEncrypt" class='label-name'>
+                    <span class='content-name'>Message to encrypt</span>
+                </label>
+            </div>
+            
     
-        <div class='result'>
-            <p id='resultEncrypt'></p>
+            <div class='button'>
+                <button class='resultButton' onclick='encryptMessage();'>Encrypt</button>
+            </div>
+        
+            <div class='result'>
+                <p id='resultEncrypt'></p>
+            </div>
+        </div>
+
+        <div class='col-sm-5'>
+            
+            <div class='title'>
+                <h1>Decrypt a point to a message</h1>
+            </div>
+
+            <div class='form'>
+                <!-- <h1>Point x coord</h1> -->
+                <input type="text" id='pointx' name='messageDecryptx' autocomplete='off' required>
+                <label for="messageDecryptx" class='label-name'>
+                    <span class='content-name'>X Coordinate</span>
+                </label>
+            </div>
+            
+            <div class='form'>
+                <!-- <h1>Point y coord</h1> -->
+                <input type="text" id='pointy' name='messageDecrypty' autocomplete='off' required>
+                <label for="messageDecrypty" class='label-name'>
+                    <span class='content-name'>Y Coordinate</span>
+                </label>
+            </div>
+
+            <div class='form'>
+                <!-- <h1>Point z coord</h1> -->
+                <input type="text" id='pointz' name='messageDecryptz' autocomplete='off' required>
+                <label for="messageDecryptz" class='label-name'>
+                    <span class='content-name'>Z Coordinate</span>
+                </label>
+            </div>
+            
+    
+            <div class='button'>
+                <button class='resultButton' onclick='decryptMessage();'>Decrypt</button>
+            </div>
+        
+            <div class='result'>
+                <p id='resultDecrypt'></p>
+            </div>
         </div>
     </div>
