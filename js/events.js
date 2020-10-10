@@ -177,7 +177,9 @@ function encryptMessage() {
 }
 
 function decryptMessage() {
-    let P = document.getElementById('point').value;
-    let M = koblitz_decode(P);
+    let x = document.getElementById('pointx').value;
+    let y = document.getElementById('pointy').value;
+    let z = document.getElementById('pointz').value;
+    let M = koblitz_decode(new Point(x,y,z,E));
     document.getElementById('resultDecrypt').innerHTML = 'The message corresponding to the point is: '.concat(M)
 }
