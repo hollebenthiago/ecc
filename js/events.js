@@ -176,7 +176,7 @@ function generateKeys() {
     document.getElementById('resultKeysPublic').innerHTML = 'Your public key is : '.concat(ks[1], 'P = ','[', 00, ', ', 00 , ', ', 1, ']')
 }
 
-function generateRandomPoint() {
+function generateBasePoint() {
     let P = getRandomPoint(E);
     document.getElementById('resultBasePoint').innerHTML = 'The base point is : '.concat('P = ','[', P.x, ', ', P.y , ', ', P.z, ']')
 }
