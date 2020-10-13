@@ -98,6 +98,8 @@ p, h1, span, label, button {
 }
 
 .setup div{
-	margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
+ 
