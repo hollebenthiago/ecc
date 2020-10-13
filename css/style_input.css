@@ -102,7 +102,7 @@ p, h1, span, label, button {
     justify-content: center;
 }
 
-.decrypt div{
+.decrypt div, div input, div label, div label span{
     display: flex;
     justify-content: flex-end;
 }
