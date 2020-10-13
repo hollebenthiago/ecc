@@ -1,8 +1,8 @@
 // curve used for cryptography
 const E = new Curve(16777259, 3, 7);
+const cardinality = 16773749;
 
-
-// taking powers of huge integers
+// taking powers of huge integer s
 function power_mod(x, n, p, big_numbers = true) {
     if (big_numbers) {
         let  q = BigInt(1);
@@ -67,4 +67,13 @@ function koblitz_decode(point) {
         m = Math.floor(m/c);
     }
     return lst.join('')
+}
+
+// generate keys
+function keys(curve) {
+    let a = Math.floor(Math.random() * cardinality);
+    while (gcd(a, cardinality) != 1) {
+        a = Math.floor(Math.random() * cardinality);
+    }
+    return [a, modInverse(a, curve.p)]
 }

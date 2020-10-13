@@ -170,6 +170,13 @@ function findTorsion() {
 
 }
 
+function generateKeys() {
+    let ks = keys(E);
+    document.getElementById('resultKeysPrivate').innerHTML = 'Your private key is : '.concat(ks[0])
+    document.getElementById('resultKeysPublic').innerHTML = 'Your public key is : '.concat('[', ks[1], ', ', 00 , ', ', 00, ']')
+}
+
+
 function encryptMessage() {
     let M = document.getElementById('message').value;
     let MP = koblitz_encode(E, M);

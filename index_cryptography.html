@@ -9,7 +9,22 @@ description:  Elliptic Curve Cryptography.
 ---
 <!-- <div class="jumbotron"> -->
     <div class="container">
+        <div class='title'>
+            <h1>Generate keys</h1>
+        </div>
+        <div class='intro'>
+            <p>Generates private and public keys</p>
+        </div>
+
+        <div class='button'>
+            <button class='resultButton' onclick='generateKeys();'>Generate</button>
+        </div>
         
+        <div class='result'>
+            <p id='resultKeysPrivate'></p>
+            <p id='resultKeysPublic'></p>
+        </div>
+
         <div class='col-sm-5'>
             <div class='title'>
                 <h1>Encrypt</h1>
