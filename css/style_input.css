@@ -97,5 +97,7 @@ p, h1, span, label, button {
     padding-top: 30px;
 }
 
-
+.setup div{
+	margin: 0 auto;
+}
 
