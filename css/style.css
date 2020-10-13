@@ -96,6 +96,11 @@ pre.prettyprint { padding: 10px !important; margin: 40px; font-size: 12px;}
     text-align: center;
 }
 
+.setup {
+	display: flex;
+	align-content: center;
+}
+
 
 .canvas-div {
 	display: flex;

@@ -10,52 +10,23 @@ description:  Elliptic Curve Cryptography.
 <!-- <div class="jumbotron"> -->
     <div class="container">
         <div class='setup'>
+
+            <div class='title'>
+                <h1>Keys</h1>
+            </div>
+            
             <div class='intro'>
-                <p>Generate keys and a base point</p>
+                <p>Generates private and public keys</p>
             </div>
-
-            <div class='col-sm-5'>
-
-                <div class='title'>
-                    <h1>Keys</h1>
-                </div>
-                
-                <div class='intro'>
-                    <p>Generates private and public keys</p>
-                </div>
-                
-                <div class='button'>
-                    <button class='resultButton' onclick='generateKeys();'>Generate</button>
-                </div>
             
-                <div class='result'>
-                    <p id='resultKeysPrivate'></p>
-                    <p id='resultKeysPublic'></p>
-                </div>
+            <div class='button'>
+                <button class='resultButton' onclick='generateKeys();'>Generate</button>
             </div>
-
-            <div class='col-sm-5'>
-                
-                <div class='title'>
-                    <h1>Base Point</h1>
-                </div>
-
-                <div class='intro'>
-                    <p>Generates a random base point</p>
-                </div>
-                
-                <div class='button'>
-                    <button class='resultButton' onclick='generateBasePoint();'>Generate</button>
-                </div>
-            
-                <div class='result'>
-                    <p id='resultBasePoint'></p>
-                </div>
+        
+            <div class='result'>
+                <p id='resultKeysPrivate'></p>
+                <p id='resultKeysPublic'></p>
             </div>
-        </div>
-
-        <div class = 'placeholder'>
-
         </div>
 
         <div class='col-sm-5'>
