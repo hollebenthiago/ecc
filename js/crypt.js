@@ -37,6 +37,33 @@ function stringtoInt(message) {
     return message_num
 }
 
+// generate keys
+function keys(curve) {
+    let a = Math.floor(Math.random() * cardinality);
+    while (gcd(a, cardinality) != 1) {
+        a = Math.floor(Math.random() * cardinality);
+    }
+    return [a, modInverse(a, curve.p)]
+}
+
+// generate base point
+function getRandomPoint(curve) {
+    let onCurve = false;
+    let a = BigInt(curve.equation[0]);
+    let b = BigInt(curve.equation[1]);
+    let p = curve.p;
+    while (!onCurve) {
+        let x = BigInt(Math.floor(Math.random() * p));
+        let s = (x * x * x + a * x + b) % BigInt(p);
+        console.log(x, s)
+        if (s == power_mod(s, (p + 1)/2, p) && x != BigInt(0)) {
+            let y = power_mod(s, (p + 1)/4, p)
+            onCurve = false;
+        }
+    }
+    return new Point(x, y, 1, E)
+}
+
 //encode message to point on elliptic curve
 function koblitz_encode(curve, message) {
     let a = BigInt(curve.equation[0]);
@@ -69,11 +96,3 @@ function koblitz_decode(point) {
     return lst.join('')
 }
 
-// generate keys
-function keys(curve) {
-    let a = Math.floor(Math.random() * cardinality);
-    while (gcd(a, cardinality) != 1) {
-        a = Math.floor(Math.random() * cardinality);
-    }
-    return [a, modInverse(a, curve.p)]
-}

@@ -173,7 +173,12 @@ function findTorsion() {
 function generateKeys() {
     let ks = keys(E);
     document.getElementById('resultKeysPrivate').innerHTML = 'Your private key is : '.concat(ks[0])
-    document.getElementById('resultKeysPublic').innerHTML = 'Your public key is : '.concat('[', ks[1], ', ', 00 , ', ', 00, ']')
+    document.getElementById('resultKeysPublic').innerHTML = 'Your public key is : '.concat(ks[1], 'P = ','[', 00, ', ', 00 , ', ', 1, ']')
+}
+
+function generateRandomPoint() {
+    let P = getRandomPoint(E);
+    document.getElementById('resultBasePoint').innerHTML = 'The base point is : '.concat('P = ','[', P.x, ', ', P.y , ', ', P.z, ']')
 }
 
 
