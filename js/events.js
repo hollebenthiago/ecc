@@ -198,25 +198,25 @@ function encryptMessage() {
     let secondPoint = addPoints(MP, mult(k, Pb));
 
     document.getElementById('resultEncrypt').innerHTML = 'Send both points to the receiver: '.concat('[', firstPoint.x, ', ', firstPoint.y, ', ', 
-    firstPoint.z, '] and [', secondPoint.x, secondPoint.y, secondPoint.z, ']')
+    firstPoint.z, '] and [', secondPoint.x, ', ', secondPoint.y, ', ',secondPoint.z, ']')
 }
 
 function decryptMessage() {
     
     let privatekey = document.getElementById('private').value;
 
-    let x1 = document.getElementById('point1x').value;
-    let y1 = document.getElementById('point1y').value;
-    let z1 = document.getElementById('point1z').value;
+    let x1 = BigInt(document.getElementById('point1x').value);
+    let y1 = BigInt(document.getElementById('point1y').value);
+    let z1 = BigInt(document.getElementById('point1z').value);
 
-    let x2 = document.getElementById('point2x').value;
-    let y2 = document.getElementById('point2y').value;
-    let z2 = document.getElementById('point2z').value;
+    let x2 = BigInt(document.getElementById('point2x').value);
+    let y2 = BigInt(document.getElementById('point2y').value);
+    let z2 = BigInt(document.getElementById('point2z').value);
 
-    let P1 = new Point(x1,y1,z1,E);
+    let P1 = new Point(x1,-y1,z1,E);
     let P2 = new Point(x2,y2,z2,E);
 
-    let P = addPoints(P2, mult(-privatekey, P1));
+    let P = addPoints(P2, mult(privatekey, P1));
     let M = koblitz_decode(P);
 
     document.getElementById('resultDecrypt').innerHTML = 'The message corresponding to the point is: '.concat(M)

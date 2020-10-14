@@ -101,14 +101,22 @@ function addPoints(p1, p2, primeTesting = false) {
 }
 
 function mult(n, p) {
-    
-    let s = new Point(0, 1, 0, p.curve);
-
+    let bigNumbers = p.curve.bigNumbers;
+    console.log(bigNumbers);
+    let s;
     if (n == 0) {
-        return s
+        return new Point(0, 1, 0, p.curve);
     }
 
     else if (n > 0) {
+        
+        if (!p.curve.bigNumbers) {
+            s = new Point(0, 1, 0, p.curve)
+        }
+
+        if (p.curve.bigNumbers) {
+            s = new Point(BigInt(0), BigInt(1), BigInt(0), p.curve)
+        }
         let q = new Point(p.x, p.y, p.z, p.curve);
         for (let i = 0; i < n; i++) {
             s = addPoints(s, q);
@@ -117,6 +125,15 @@ function mult(n, p) {
     }
 
     else {
+
+        if (!p.curve.bigNumbers) {
+            s = new Point(0, 1, 0, p.curve)
+        }
+
+        if (p.curve.bigNumbers) {
+            s = new Point(BigInt(0), BigInt(1), BigInt(0), p.curve)
+        }
+
         let q = new Point(p.x -p.y, p.z, p.curve);
         n = -n;
         for (let i = 0; i < n; i++) {
