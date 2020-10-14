@@ -11,7 +11,8 @@ function multiplication() {
     P = new Point(x1,y1,z1,C);
     if (C.includePoint(P.x, P.y, P.z)) {
         Q = mult(n, P);
-        document.getElementById('resultMultiplication').innerHTML = 'The coordinates of '.concat((n).toString(), 'P' ,' are: [', (Q.x).toString(), ': ', (Q.y).toString(), ': ', (Q.z).toString(), ']')
+        document.getElementById('resultMultiplication').innerHTML = 'The coordinates of '.concat((n).toString(), 'P' ,' are: [',
+         (Q.x).toString(), ': ', (Q.y).toString(), ': ', (Q.z).toString(), ']')
     }
     else {
         document.getElementById('resultMultiplication').innerHTML = 'The point P has to be on the curve'
@@ -33,7 +34,8 @@ function addition() {
     Q = new Point(x2,y2,z2,C);
     R = addPoints(P, Q);
     if (C.includePoint(P.x, P.y, P.z) && C.includePoint(Q.x, Q.y, Q.z)) {
-        document.getElementById('resultAddition').innerHTML = 'The coordinates of '.concat( 'P + Q' ,' are: [', (R.x).toString(), ': ', (R.y).toString(), ': ', (R.z).toString(), ']')
+        document.getElementById('resultAddition').innerHTML = 'The coordinates of '.concat( 'P + Q' ,' are: [', (R.x).toString(), ': ',
+         (R.y).toString(), ': ', (R.z).toString(), ']')
     }
     else {
         document.getElementById('resultAddition').innerHTML = 'Both points have to be on the curve'
@@ -92,7 +94,8 @@ function primalityTest() {
     else {
         let a = arr[2].equation[0];
         let b = arr[2].equation[1];
-        document.getElementById('resultPrimality').innerHTML = 'The number '.concat(p, ' is not prime! The Elliptic Curve  y² = x³ + ', a, 'x + ', b,' does not have a group structure. One factor was found: ', (arr[1]).toString());
+        document.getElementById('resultPrimality').innerHTML = 'The number '.concat(p, ' is not prime! The Elliptic Curve  y² = x³ + ', a, 'x + ', b,
+        ' does not have a group structure. One factor was found: ', (arr[1]).toString());
     }
 
 }
@@ -150,7 +153,8 @@ function findTorsion() {
     let tPoints = torsionPoints(E);
     console.log(tPoints, tPoints.length);
     if (tPoints.length == 1) {
-        document.getElementById('resultTorsion').innerHTML = 'The only torsion point of the curve y² = x³ + '.concat(a, 'x + ', b, ' is the point at infinity [0: 1: 0]');
+        document.getElementById('resultTorsion').innerHTML = 'The only torsion point of the curve y² = x³ + '.concat(a, 
+            'x + ', b, ' is the point at infinity [0: 1: 0]');
     }
     else {
         let textTorsion = 'The torsion points of the curve  y² = x³ + '.concat(a, 'x + ', b, ' are :');
@@ -183,9 +187,18 @@ function generateBasePoint() {
 
 
 function encryptMessage() {
-    let M = document.getElementById('message').value;
-    let MP = koblitz_encode(E, M);
-    document.getElementById('resultEncrypt').innerHTML = 'The point corresponding to your message is: '.concat('[', MP.x, ', ',MP.y, ', ', MP.z, ']')
+    let M   = document.getElementById('message').value;
+    let Pbx = document.getElementById('publicKeyx').value;
+    let Pby = document.getElementById('publicKeyy').value;
+    let Pbz = document.getElementById('publicKeyz').value;
+    let Pb  = new Point(BigInt(Pbx), BigInt(Pby), BigInt(Pbz), E)
+    let k   = Math.floor(Math.random() * 100);
+    let MP  = koblitz_encode(E, M);
+    let firstPoint = mult(k, basePoint);
+    let secondPoint = addPoints(MP, mult(k, Pb));
+
+    document.getElementById('resultEncrypt').innerHTML = 'Send both points to the receiver: '.concat('[', firstPoint.x, ', ', firstPoint.y, ', ', 
+    firstPoint.z, '] and [', secondPoint.x, secondPoint.y, secondPoint.z, ']')
 }
 
 function decryptMessage() {

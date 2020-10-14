@@ -44,7 +44,7 @@ function keys(curve) {
     while (gcd(a, cardinality) != 1) {
         a = Math.floor(Math.random() * cardinality);
     }
-    return [a, modInverse(a, curve.p)]
+    return [a, mult(a, basePoint)]
 }
 
 // generate base point
