@@ -68,25 +68,28 @@ function koblitz_encode(curve, message) {
     let b = BigInt(curve.equation[1]);
     let p = curve.p;
     // message = message.toString();
-    let m = stringtoInt(message); 
-    let d = 100;
+    let m = BigInt(stringtoInt(message)); 
+    let d = BigInt(100);
     for (let j = 0; j < d; j++) {
-        let x = BigInt((d * m + j) % p);
+        let x = BigInt((d * m + BigInt(j)) % p);
         let s = (x * x * x + a * x + b) % BigInt(p);
         console.log(j, x, s)
-        if (s == power_mod(s, (p + 1)/2, p)) {
-            let y = power_mod(s, (p + 1)/4, p)
-            return new Point(parseInt(x), parseInt(y), 1, curve)
+        if (s == power_mod(s, BigInt((parseInt(p) + 1)/2), p)) {
+            let y = power_mod(s, BigInt((parseInt(p) + 1)/4), p)
+            return new Point(x, y, 1, curve)
         }
     }
 }
 
 // decode point to message
 function koblitz_decode(point) {
+    let x = parseInt(point.x);
+    let y = parseInt(point.y);
+    let z = parseInt(point.z);
     let c = 2 ** 8;
     let d = 100;
     let lst = [];
-    let m = parseInt(Math.floor((point.x/point.z)/d))
+    let m = parseInt(Math.floor((x/z)/d))
     while (m != 0) {
         lst.push(String.fromCharCode(m % c));
         m = Math.floor(m/c);

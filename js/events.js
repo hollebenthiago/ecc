@@ -202,9 +202,22 @@ function encryptMessage() {
 }
 
 function decryptMessage() {
-    let x = document.getElementById('pointx').value;
-    let y = document.getElementById('pointy').value;
-    let z = document.getElementById('pointz').value;
-    let M = koblitz_decode(new Point(x,y,z,E));
+    
+    let privatekey = document.getElementById('private').value;
+
+    let x1 = document.getElementById('point1x').value;
+    let y1 = document.getElementById('point1y').value;
+    let z1 = document.getElementById('point1z').value;
+
+    let x2 = document.getElementById('point2x').value;
+    let y2 = document.getElementById('point2y').value;
+    let z2 = document.getElementById('point2z').value;
+
+    let P1 = new Point(x1,y1,z1,E);
+    let P2 = new Point(x2,y2,z2,E);
+
+    let P = addPoints(P2, mult(-privatekey, P1));
+    let M = koblitz_decode(P);
+
     document.getElementById('resultDecrypt').innerHTML = 'The message corresponding to the point is: '.concat(M)
 }
