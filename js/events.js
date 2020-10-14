@@ -177,7 +177,7 @@ function findTorsion() {
 function generateKeys() {
     let ks = keys(E);
     document.getElementById('resultKeysPrivate').innerHTML = 'Your private key is : '.concat(ks[0])
-    document.getElementById('resultKeysPublic').innerHTML = 'Your public key is : '.concat(ks[1], 'P = ','[', 00, ', ', 00 , ', ', 1, ']')
+    document.getElementById('resultKeysPublic').innerHTML = 'Your public key is : '.concat(ks[0], 'P = ','[', parseInt(ks[1].x), ', ', parseInt(ks[1].y), ', ', parseInt(ks[1].z), ']')
 }
 
 function generateBasePoint() {
