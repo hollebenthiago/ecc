@@ -174,31 +174,61 @@ function findTorsion() {
 
 }
 
+// generate random private and public keys
 function generateKeys() {
     let ks = keys(E);
     document.getElementById('resultKeysPrivate').innerHTML = 'Your private key is : '.concat(ks[0])
     document.getElementById('resultKeysPublic').innerHTML = 'Your public key is : '.concat(ks[0], 'P = ','[', parseInt(ks[1].x), ', ', parseInt(ks[1].y), ', ', parseInt(ks[1].z), ']')
 }
 
-function generateBasePoint() {
-    let P = getRandomPoint(E);
-    document.getElementById('resultBasePoint').innerHTML = 'The base point is : '.concat('P = ','[', P.x, ', ', P.y , ', ', P.z, ']')
-}
+// function generateBasePoint() {
+//     let P = getRandomPoint(E);
+//     document.getElementById('resultBasePoint').innerHTML = 'The base point is : '.concat('P = ','[', P.x, ', ', P.y , ', ', P.z, ']')
+// }
 
-
+//encrypt message
 function encryptMessage() {
     let M   = document.getElementById('message').value;
     let Pbx = document.getElementById('publicKeyx').value;
     let Pby = document.getElementById('publicKeyy').value;
     let Pbz = document.getElementById('publicKeyz').value;
+    
+    if (M.length % 2 != 0) {
+        M = M.concat(' ')
+    }
+
+    let n   = M.length - 2;
+    let points = [];
+
+    for (let i = 0; i <= n; i += 2) {
+        points.push(M.slice(i, i+2))
+    }
+
     let Pb  = new Point(BigInt(Pbx), BigInt(Pby), BigInt(Pbz), E)
     let k   = Math.floor(Math.random() * 100);
-    let MP  = koblitz_encode(E, M);
+    // let MP  = koblitz_encode(E, M);
+    let MP = [];
+    for (let i = 0; i < points.length; i++) {
+        MP.push(koblitz_encode(E, points[i]))
+    }
+    
     let firstPoint = mult(k, basePoint);
-    let secondPoint = addPoints(MP, mult(k, Pb));
+    // let secondPoint = addPoints(MP, mult(k, Pb));
+    let secondPoint = [];
+    
+    for (let i = 0; i < points.length; i++) {
+        secondPoint.push(addPoints(MP[i], mult(k, Pb)))
+    }
+    
+    let pointsConcat = ''.concat(firstPoint.x, ':', firstPoint.y, ':', firstPoint.z, '~');
+    
+    for (let i = 0; i < points.length - 1; i++) {
+        pointsConcat = pointsConcat.concat(MP[i].x, ':', MP[i].y, ':', MP[i].z, '|')
+    }
 
-    document.getElementById('resultEncrypt').innerHTML = 'Send both points to the receiver: '.concat('[', firstPoint.x, ', ', firstPoint.y, ', ', 
-    firstPoint.z, '] and [', secondPoint.x, ', ', secondPoint.y, ', ',secondPoint.z, ']')
+    pointsConcat = pointsConcat.concat(MP[MP.length - 1].x, ':', MP[MP.length - 1].y, ':',MP[MP.length - 1].z)
+
+    document.getElementById('resultEncrypt').innerHTML = 'Send both points to the receiver: \n'.concat(pointsConcat);
 }
 
 function decryptMessage() {

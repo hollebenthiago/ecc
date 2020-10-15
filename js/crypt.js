@@ -36,6 +36,7 @@ function stringtoInt(message) {
 }
 
 // generate keys
+// might add more curves later
 function keys(curve) {
     let a = Math.floor(Math.random() * cardinality);
     while (gcd(a, cardinality) != 1) {
@@ -44,23 +45,23 @@ function keys(curve) {
     return [a, mult(a, basePoint)]
 }
 
-// generate base point
-function getRandomPoint(curve) {
-    let onCurve = false;
-    let a = BigInt(curve.equation[0]);
-    let b = BigInt(curve.equation[1]);
-    let p = curve.p;
-    while (!onCurve) {
-        let x = BigInt(Math.floor(Math.random() * p));
-        let s = (x * x * x + a * x + b) % BigInt(p);
-        console.log(x, s)
-        if (s == power_mod(s, (p + 1)/2, p) && x != BigInt(0)) {
-            let y = power_mod(s, (p + 1)/4, p)
-            onCurve = false;
-        }
-    }
-    return new Point(x, y, 1, E)
-}
+// // generate base point
+// function getRandomPoint(curve) {
+//     let onCurve = false;
+//     let a = BigInt(curve.equation[0]);
+//     let b = BigInt(curve.equation[1]);
+//     let p = curve.p;
+//     while (!onCurve) {
+//         let x = BigInt(Math.floor(Math.random() * p));
+//         let s = (x * x * x + a * x + b) % BigInt(p);
+//         console.log(x, s)
+//         if (s == power_mod(s, (p + 1)/2, p) && x != BigInt(0)) {
+//             let y = power_mod(s, (p + 1)/4, p)
+//             onCurve = false;
+//         }
+//     }
+//     return new Point(x, y, 1, E)
+// }
 
 //encode message to point on elliptic curve
 function koblitz_encode(curve, message) {
@@ -95,5 +96,28 @@ function koblitz_decode(point) {
         m = Math.floor(m/c);
     }
     return lst.join('')
+}
+
+
+function format(s) {
+    h = s.split('~');
+    h0 = h[0].split(':');
+    h2 = h[1].split('|');
+    h1 = [];
+    n = h2.length;
+    for (let i = 0; i < n; i ++) {
+        h1.push(h2[i].split(':'))
+    }
+
+    for (let i = 0; i < 3; i ++) { 
+        h0[i] = BigInt(h0[i])
+    }
+    console.log(h0, h1);
+    for (let i = 0; i < h1.length; i ++) {
+        for (let j = 0; j < 3; j ++) {
+            h1[i][j] = BigInt(h1[i][j])
+        }
+    }
+    return [h0, h1]
 }
 
