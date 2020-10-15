@@ -223,31 +223,42 @@ function encryptMessage() {
     let pointsConcat = ''.concat(firstPoint.x, ':', firstPoint.y, ':', firstPoint.z, '~');
     
     for (let i = 0; i < points.length - 1; i++) {
-        pointsConcat = pointsConcat.concat(MP[i].x, ':', MP[i].y, ':', MP[i].z, '|')
+        pointsConcat = pointsConcat.concat(secondPoint[i].x, ':', secondPoint[i].y, ':', secondPoint[i].z, '|')
     }
 
-    pointsConcat = pointsConcat.concat(MP[MP.length - 1].x, ':', MP[MP.length - 1].y, ':',MP[MP.length - 1].z)
+    pointsConcat = pointsConcat.concat(secondPoint[secondPoint.length - 1].x, ':', secondPoint[secondPoint.length - 1].y, ':',secondPoint[secondPoint.length - 1].z)
 
-    document.getElementById('resultEncrypt').innerHTML = 'Send both points to the receiver: \n'.concat(pointsConcat);
+    document.getElementById('resultEncrypt').innerHTML = 'Send the message below to the receiver: \n'.concat(pointsConcat);
 }
 
 function decryptMessage() {
     
     let privatekey = document.getElementById('private').value;
 
-    let x1 = BigInt(document.getElementById('point1x').value);
-    let y1 = BigInt(document.getElementById('point1y').value);
-    let z1 = BigInt(document.getElementById('point1z').value);
+    let encryptedMessage = format(document.getElementById('point1x').value);
 
-    let x2 = BigInt(document.getElementById('point2x').value);
-    let y2 = BigInt(document.getElementById('point2y').value);
-    let z2 = BigInt(document.getElementById('point2z').value);
+    let P1 = new Point(encryptedMessage[0][0], -encryptedMessage[0][1], encryptedMessage[0][2], E);
 
-    let P1 = new Point(x1,-y1,z1,E);
-    let P2 = new Point(x2,y2,z2,E);
+    let parts = '';
+    
+    for (let i = 0; i < encryptedMessage[1].length; i++) {
+        let P = addPoints(new Point(encryptedMessage[1][i][0], encryptedMessage[1][i][1], encryptedMessage[1][i][2], E), mult(privatekey, P1));
+        parts = parts.concat(koblitz_decode(P));
+    }
 
-    let P = addPoints(P2, mult(privatekey, P1));
-    let M = koblitz_decode(P);
+    // let x1 = BigInt(document.getElementById('point1x').value);
+    // let y1 = BigInt(document.getElementById('point1y').value);
+    // let z1 = BigInt(document.getElementById('point1z').value);
 
-    document.getElementById('resultDecrypt').innerHTML = 'The message corresponding to the point is: '.concat(M)
+    // let x2 = BigInt(document.getElementById('point2x').value);
+    // let y2 = BigInt(document.getElementById('point2y').value);
+    // let z2 = BigInt(document.getElementById('point2z').value);
+
+    // let P1 = new Point(x1,-y1,z1,E);
+    // let P2 = new Point(x2,y2,z2,E);
+
+    // let P = addPoints(P2, mult(privatekey, P1));
+    // let M = koblitz_decode(P);
+
+    document.getElementById('resultDecrypt').innerHTML = 'The message corresponding to the point is: '.concat(parts)
 }
