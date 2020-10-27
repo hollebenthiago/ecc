@@ -39,7 +39,7 @@ def generate_keys(E, P):
     return [a, a * P]
 
 # Turns a string into a point on the elliptic curve E
-def stringPoint_encode(E, string):
+def stringPoint_encode(E, string, verbose = False):
     A = E.a4()
     B = E.a6()
     p = E.base_field().cardinality()
@@ -49,6 +49,8 @@ def stringPoint_encode(E, string):
     d = _sage_const_100 
     pts = []
     for t in range(n // _sage_const_64  + _sage_const_1 ):
+        if verbose:
+            print(t, ' de ', n // _sage_const_64  + _sage_const_1)
         m_current = msg[_sage_const_64  * t : _sage_const_64  * (t + _sage_const_1 )]
         m = sum(ord(m_current[k]) * b**k for k in range(min(len(m_current), _sage_const_64 )))
         for j in range(d):
@@ -61,11 +63,13 @@ def stringPoint_encode(E, string):
     return pts
 
 # Reverse operation of the previous function
-def pointString_decode(lst_P):
+def pointString_decode(lst_P, verbose = False):
     b = _sage_const_2  ** _sage_const_8 
     d = _sage_const_100 
     lst = []
     for P in lst_P:
+        if verbose:
+            print(lst_P.index(P), ' de ', len(lst_P))
         m = int((floor((P[_sage_const_0 ]/P[_sage_const_2 ])))/d)
         while m != _sage_const_0 :
             lst.append(chr(m % b))
@@ -74,10 +78,12 @@ def pointString_decode(lst_P):
     return ''.join(lst)
 
 # Encodes a message (string) with given keys
-def encode(E, P, msg, privateKey_sender, publicKey_sender, publicKey_reciever):
-    PM = stringPoint_encode(E, msg)
+def encode(E, P, msg, privateKey_sender, publicKey_sender, publicKey_reciever, verbose = False):
+    PM = stringPoint_encode(E, msg, verbose)
     enc_msg = []
     for Q in PM:
+        if verbose:
+            print(PM.index(Q), ' de ', len(PM))
         k = ZZ.random_element(q)
         kP = k *  publicKey_sender
         enc_msg.append([kP, Q + k * privateKey_sender * publicKey_reciever])
@@ -86,18 +92,20 @@ def encode(E, P, msg, privateKey_sender, publicKey_sender, publicKey_reciever):
 
 
 # Decrypts a message (string) with given keys
-def decode(E, P, enc_msg, publicKey_sender, privateKey_reciever):
+def decode(E, P, enc_msg, publicKey_sender, privateKey_reciever, verbose = False):
     lst_P = []
     for e_msg in enc_msg:
+        if verbose:
+            print(enc_msg.index(e_msg), ' de ', len(enc_msg))
         kP = privateKey_reciever * e_msg[_sage_const_0 ]
         PM = e_msg[_sage_const_1 ] - kP
         lst_P.append(PM)
-    dec_msg = pointString_decode(lst_P)
+    dec_msg = pointString_decode(lst_P, verbose)
     return dec_msg
 
 
 # Turns a list into a point on an elliptic curve E
-def listPoint_encode(E, lst):
+def listPoint_encode(E, lst, verbose = False):
     A = E.a4()
     B = E.a6()
     p = E.base_field().cardinality()
@@ -106,6 +114,8 @@ def listPoint_encode(E, lst):
     d = _sage_const_100 
     pts = []
     for t in range(n // _sage_const_64  + _sage_const_1 ):
+        if verbose:
+            print(t, ' de ', n // _sage_const_64  + _sage_const_1)
         m_current = lst[_sage_const_64  * t : _sage_const_64  * (t + _sage_const_1 )]
         m = sum(m_current[k] * b ** k for k in range(min(len(m_current), _sage_const_64 )))
         for j in range(d):
@@ -118,11 +128,13 @@ def listPoint_encode(E, lst):
     return pts
 
 # Reverse operation of the previous function
-def pointList_decode(lst_P):
+def pointList_decode(lst_P, verbose = False):
     b = _sage_const_2  ** _sage_const_8 
     d = _sage_const_100 
     lst = []
     for P in lst_P:
+        if verbose:
+            print(lst_P.index(P), ' de ', len(lst_P))
         temp_lst = []
         m = int((floor((P[_sage_const_0 ][_sage_const_0 ]/P[_sage_const_0 ][_sage_const_2 ])))/d)
         while m != _sage_const_0 :
@@ -135,42 +147,50 @@ def pointList_decode(lst_P):
     return lst
 
 # Turns an image into a point on an elliptic curve E
-def imagePoint_encode(E, img):
+def imagePoint_encode(E, img, verbose = False):
     pixels = img.getdata()
     red = [p[_sage_const_0 ] for p in pixels]
     green = [p[_sage_const_1 ] for p in pixels]
     blue = [p[_sage_const_2 ] for p in pixels]
     
-    print('encode red')    
-    enc_red = listPoint_encode(E, red)
-    print('encode green')
-    enc_green = listPoint_encode(E, green)
-    print('encode blue')
-    enc_blue = listPoint_encode(E, blue)
+    if verbose:
+        print('encode red')    
+    enc_red = listPoint_encode(E, red, verbose)
+    if verbose:
+        print('encode green')
+    enc_green = listPoint_encode(E, green, verbose)
+    if verbose:
+        print('encode blue')
+    enc_blue = listPoint_encode(E, blue, verbose)
 
     return [enc_red, enc_green, enc_blue]
 
 # Reverse operation of the previous function
-def pointImage_decode(lst_P):
+def pointImage_decode(lst_P, verbose = False):
     
-    print('decode red')    
-    dec_red = pointList_decode(lst_P[_sage_const_0 ])
-    print('decode green')
-    dec_green = pointList_decode(lst_P[_sage_const_1 ])
-    print('decode blue')
-    dec_blue = pointList_decode(lst_P[_sage_const_2 ])
+    if verbose:
+        print('decode red')    
+    dec_red = pointList_decode(lst_P[_sage_const_0 ], verbose)
+    if verbose:
+        print('decode green')
+    dec_green = pointList_decode(lst_P[_sage_const_1 ], verbose)
+    if verbose:
+        print('decode blue')
+    dec_blue = pointList_decode(lst_P[_sage_const_2 ], verbose)
     
     return [(r, g, b) for (r, g, b) in zip(dec_red, dec_green, dec_blue)]
 
 # Encrypts an image with given keys
-def encodeImage(E, P, img, privateKey_sender, publicKey_sender, publicKey_reciever):
-    PM = imagePoint_encode(E, img)
+def encodeImage(E, P, img, privateKey_sender, publicKey_sender, publicKey_reciever, verbose = False):
+    PM = imagePoint_encode(E, img, verbose)
     enc_red = []
     enc_green = []
     enc_blue = []
 
     for i, e in enumerate([enc_red, enc_green, enc_blue]):
         for Q in PM[i]:
+            if verbose:
+                print(PM[i].index(Q), ' de ', len(PM[i]), '\  ', i)
             k = ZZ.random_element(q)
             kP = k *  publicKey_sender
             e.append([kP, Q[_sage_const_0 ] + k * privateKey_sender * publicKey_reciever, Q[_sage_const_1 ]])
@@ -178,17 +198,19 @@ def encodeImage(E, P, img, privateKey_sender, publicKey_sender, publicKey_reciev
     return enc_img
 
 # Decrypts an image with given keys
-def decodeImage(E, P, enc_img, publicKey_sender, privateKey_reciever):
+def decodeImage(E, P, enc_img, publicKey_sender, privateKey_reciever, verbose = False):
     lst_P = []
     dec_red = []
     dec_green = []
     dec_blue = []
     for i, e in enumerate([dec_red, dec_green, dec_blue]):
         for e_dec in enc_img[i]:
+            if verbose:
+                print(enc_img[i].index(e_dec), ' de ', len(enc_img[i]), '\  ', i)
             kP = privateKey_reciever * e_dec[_sage_const_0 ]
             PM = e_dec[_sage_const_1 ] - kP
             e.append([PM, e_dec[_sage_const_2 ]])
-    dec_img = pointImage_decode([dec_red, dec_green, dec_blue])
+    dec_img = pointImage_decode([dec_red, dec_green, dec_blue], verbose = False)
     return dec_img
 
 
