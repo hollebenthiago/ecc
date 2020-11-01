@@ -59,7 +59,7 @@
     height: 0%;
 }
 
-div {
+.cryptography, .torsion, .primality, .distribution, .plot, .addition, .multiplication, .title, .intro, .form{
     text-align: center;
 }
 
