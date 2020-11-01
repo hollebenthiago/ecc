@@ -1,3 +1,6 @@
+// redirect
+function redirect()
+
 // multiplication by scalar
 function multiplication() {
     let p = parseInt(document.getElementById('prime').value);

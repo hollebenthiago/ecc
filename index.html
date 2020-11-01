@@ -4,74 +4,51 @@ layout: default
 cv: passive
 notes: passive
 contact: passive -->
-multiplication: active
-description:  Scalar multiplication EC calculator.
+<!-- cryptography: active -->
+description:  Elliptic Curve Cryptography.
 ---
 <!-- <div class="jumbotron"> -->
     <div class="container">
-        <div class='title'>
-            <h1>Elliptic Curve Calculator</h1>
+
+        <div class='col-sm-3 crypt'>
+            <div class='button'>
+                <button class='redirectButton' id='cryptography' onclick='redirect();'>Cryptography</button>
+            </div>
         </div>
-        <div class='intro'>
-            <p>Type the cardinality of the field (prime fields with char different from 2 and 3), a,b parameters of the equation,</p>
-            <p> X, Y, Z the projective coordinates of a point P</p>
-        </div>
-        <div class='form'>
-            <!-- <h1>Prime</h1> -->
-            <input type="text" id='prime' name='prime' autocomplete='off' required>
-            <label for="prime" class='label-name'>
-                <span class='content-name'>Prime</span>
-            </label>
-        </div>
-        <div class='form'>
-            <!-- <h1>a</h1> -->
-            <input type="text" id='aParam' name='aParam' autocomplete='off' required>
-            <label for="aParam" class='label-name'>
-                <span class='content-name'>a</span>
-            </label>
-        </div>
-        <div class='form'>
-            <!-- <h1>b</h1> -->
-            <input type="text" id='bParam' name='name' autocomplete='off' required>
-            <label for="bParam" class='label-name'>
-                <span class='content-name'>b</span>
-            </label>
-        </div>
-        <div class='form'>
-            <!-- <h1>X coord P</h1> -->
-            <input type="text" id='xcoord1' name='xcoord1' autocomplete='off' required>
-            <label for="xcoord1" class='label-name'>
-                <span class='content-name'>X</span>
-            </label>
-        </div>
-        <div class='form'>
-            <!-- <h1>Y coord P</h1> -->
-            <input type="text" id='ycoord1' name='ycoord1' autocomplete='off' required>
-            <label for="ycoord1" class='label-name'>
-                <span class='content-name'>Y</span>
-            </label>
-        </div>
-        <div class='form'>
-            <!-- <h1>Z coord P</h1> -->
-            <input type="text" id='zcoord1' name='zcoord1' autocomplete='off' required>
-            <label for="zcoord1" class='label-name'>
-                <span class='content-name'>Z</span>
-            </label>
+
+        <div class='col-sm-2 torsion'>
+            <div class='button'>
+                <button class='redirectButton' id='torsion' onclick='redirect();'>Torsion</button>
+            </div>
         </div>
         
-        <div class='form'>
-            <!-- <h1>n</h1> -->
-            <input type="text" id='n' name='n' autocomplete='off' required>
-            <label for="n" class='label-name'>
-                <span class='content-name'>n</span>
-            </label>
+        <div class='col-sm-2 primality'>
+            <div class='button'>
+                <button class='redirectButton' id='primality' onclick='redirect();'>Primality</button>
+            </div>
         </div>
         
-        <div class='button'>
-            <button class='resultButton' onclick = 'multiplication();'>Calculate nP</button>
+        <div class='col-sm-2 distribution'>
+            <div class='button'>
+                <button class='redirectButton' id='distribution' onclick='redirect();'>Distribution</button>
+            </div>
         </div>
-    
-        <div class='result'>
-            <p id='resultMultiplication'></p>
+        
+        <div class='col-sm-2 plot'>
+            <div class='button'>
+                <button class='redirectButton' id='plot' onclick='redirect();'>Plot</button>
+            </div>
+        </div>
+
+        <div class='col-sm-2 addition'>
+            <div class='button'>
+                <button class='redirectButton' id='addition' onclick='redirect();'>Addition</button>
+            </div>
+        </div>
+
+        <div class='col-sm-2 multiplication'>
+            <div class='button'>
+                <button class='redirectButton' id='multiplication' onclick='redirect();'>Multiplication</button>
+            </div>
         </div>
     </div>
