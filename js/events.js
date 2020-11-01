@@ -1,5 +1,9 @@
 // redirect
-function redirect()
+function redirect(string) {
+    if (string =='cryptography') {
+        window.location = '/index_cryptography.html'
+    }
+}
 
 // multiplication by scalar
 function multiplication() {
