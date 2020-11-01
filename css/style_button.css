@@ -59,17 +59,13 @@
     height: 0%;
 }
 
-.cryptography, .torsion, .primality, .distribution, .plot, .addition, .multiplication, .title, .intro, .result{
+.cryptography, .torsion, .primality, .distribution, .plot, .addition, .multiplication, .title, .intro, .button, .result, .form{
     text-align: center;
 }
 
-.form {
-    position:absolute;
-    top:0;left:0;right:0;bottom:0;
-    display: flex;
-    align-items: center;
-    justify-content:center
-  }
+/* .forms {
+    display
+} */
 
 /* label {
     align-self: flex-start;
