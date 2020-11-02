@@ -1,31 +1,31 @@
 // redirect
 function redirect(string) {
     if (string =='cryptography') {
-        window.location = '/ecc/index_cryptography.html'
+        window.location = '/ecc/cryptography.html'
     }
 
     else if (string =='torsion') {
-        window.location = '/ecc/index_torsion.html'
+        window.location = '/ecc/torsion.html'
     }
 
     else if (string =='primality') {
-        window.location = '/ecc/index_primality.html'
+        window.location = '/ecc/primality.html'
     }
 
     else if (string =='distribution') {
-        window.location = '/ecc/index_distribution.html'
+        window.location = '/ecc/distribution.html'
     }
 
     else if (string =='plot') {
-        window.location = '/ecc/index_plot.html'
+        window.location = '/ecc/plot.html'
     }
 
     else if (string =='addition') {
-        window.location = '/ecc/index_addition.html'
+        window.location = '/ecc/addition.html'
     }
 
     else if (string =='multiplication') {
-        window.location = '/ecc/index_multiplication.html'
+        window.location = '/ecc/multiplication.html'
     }
 }
 

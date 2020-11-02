@@ -1,0 +1,42 @@
+---
+layout: info_layout
+<!-- title: hollebenthiago.github.io
+cv: passive
+notes: passive
+contact: passive -->
+primality: active
+description:  Primality test using Elliptic Curves.
+---
+<!-- <div class="jumbotron"> -->
+    <div class="container">
+        <div class='title'>
+            <h1>Elliptic Curve factorization Method</h1>
+        </div>
+        <div class='intro'>
+            <p>P is the number you wish to find a factor and n is the number of curves that will be generated.</p>
+        </div>
+        
+        <div class='form'>
+            <!-- <h1>Prime</h1> -->
+            <input type="text" id='prime' name='prime' autocomplete='off' required>
+            <label for="prime" class='label-name'>
+                <span class='content-name'>P</span>
+            </label>
+        </div>
+        
+        <div class='form'>
+            <!-- <h1>n</h1> -->
+            <input type="text" id='n' name='n' autocomplete='off' required>
+            <label for="n" class='label-name'>
+                <span class='content-name'>n</span>
+            </label>
+        </div>
+
+        <div class='button'>
+            <button class='resultButton btn1' onclick='primalityTest();'>Run</button>
+        </div>
+    
+        <div class='result'>
+            <p id='resultPrimality'></p>
+        </div>
+    </div>
