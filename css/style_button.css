@@ -8,6 +8,7 @@
     transition: 0.8s;
     position: relative;
     overflow: hidden;
+    border-radius: 5%;
 }
 
 .btn1, .btn2{
