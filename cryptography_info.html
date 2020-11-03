@@ -13,6 +13,53 @@ description: Cryptography info.
             <h1>Elliptic Curve Cryptography</h1>
         </div>
         <div class='intro'>
+            <ul>
+                <li>
+                    <p class='pinfo'>
+                        Generate a private and public key
+                    </p>
+                </li>
+                <li>
+                    <p class='pinfo'>
+                        Type the message you want to encrypt and the public key of the reciever
+                    </p>
+                </li>
+                <li>
+                    <p class='pinfo'>
+                        Send the encrypted text to the reciever
+                    </p>
+                </li>
+                <li>
+                    <p class='pinfo'>
+                        To decrypt a message sent to you, type your private key and paste the encrypted message
+                    </p>
+                </li>
+                <li>
+                    <p class='pinfo'>
+                        Because of Javascript's upper bound to "safe" arithmetic, encryption and decryption are slow (it uses BigInt arithmetic, which is a lot slower).
+                    </p>
+                </li>
+                <li>
+                    <p class='pinfo'>
+                        A message of more than two characters will be broken down in smaller messages of two characters each. Because of the above problem, small messages are recommended.
+                    </p>
+                </li>
+                <li>
+                    <p class='pinfo'>
+                        The parameters are:
+                    </p>
+                    <ul>
+                        <li>prime = 16777259</li>
+                        <li>y² = x³ + 3x + 7</li>
+                        <li>base point = [2699101: 9795704:1]</li>
+                    </ul>
+                </li>
+                <li>
+                    <p class='pinfo'>
+                        You can find more interesting examples on sage <a href="https://github.com/hollebenthiago/ecc/tree/master/sage_notebook">here</a>
+                    </p>
+                </li>
+            </ul>
             <p>update later</p>
         </div>
     </div>
