@@ -208,9 +208,14 @@ function findTorsion() {
 // generate random private and public keys
 function generateKeys() {
     let ks = keys(E);
-    document.getElementById('resultKeysPrivate').innerHTML = 'Your private key is : '.concat(ks[0]m)
+    document.getElementById('resultKeysPrivate').innerHTML = 'Your private key is : '.concat(ks[0])
     document.getElementById('resultKeysPublic').innerHTML = '\nYour public key is : '.concat(ks[0], 'P = ','[', parseInt(ks[1].x), ': ', parseInt(ks[1].y), ': ', parseInt(ks[1].z), ']')
 }
+
+// function generateBasePoint() {
+//     let P = getRandomPoint(E);
+//     document.getElementById('resultBasePoint').innerHTML = 'The base point is : '.concat('P = ','[', P.x, ', ', P.y , ', ', P.z, ']')
+// }
 
 //encrypt message
 function encryptMessage() {
