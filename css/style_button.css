@@ -68,3 +68,10 @@
     text-align: justify;
 }
 
+.keys {
+	list-style-type: none;
+}
+
+#resultKeysPrivate, #resultKeysPublic {
+    text-align: justify;
+}
