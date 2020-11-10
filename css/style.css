@@ -99,3 +99,7 @@ pre.prettyprint { padding: 10px !important; margin: 40px; font-size: 12px;}
 .canvas-div {
 	display: flex;
 }
+
+.keys {
+	list-style-type: none;
+}
