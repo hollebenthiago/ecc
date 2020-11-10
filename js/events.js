@@ -208,7 +208,7 @@ function findTorsion() {
 // generate random private and public keys
 function generateKeys() {
     let ks = keys(E);
-    document.getElementById('resultKeysPrivate').innerHTML = 'Your private key is : '.concat(ks[0])
+    document.getElementById('resultKeysPrivate').innerHTML = 'Your private key is : '.concat(ks[0], '     ','&nbsp;')
     document.getElementById('resultKeysPublic').innerHTML = '&nbsp;Your public key is : '.concat(ks[0], 'P = ','[', parseInt(ks[1].x), ': ', parseInt(ks[1].y), ': ', parseInt(ks[1].z), ']')
 }
 
